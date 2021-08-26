@@ -5,26 +5,28 @@
       class="fox-dialog_wrapper"
       @click.self="handelMaskClose"
     >
-      <div v-show="visible" class="fox-dialog" :style="style">
-        <div class="fox-dialog_header">
-          <slot name="title">
-            <span class="title">{{ title }}</span>
-          </slot>
-          <button @click="onCancel" class="closebtn">
-            <i class="fox-icon-close"></i>
-          </button>
-        </div>
-        <div class="fox-dialog_body">
-          <slot></slot>
-        </div>
-        <div class="fox-dialog_footer" v-if="$slots.footer || showFooter">
-          <slot name="footer"></slot>
-          <div v-if="!$slots.footer && showFooter">
-            <fox-button @click="onCancel">{{ cancelText }}</fox-button>
-            <fox-button @click="onOk" type="primary">{{ okText }}</fox-button>
+      <transition name="fox-dialog-inner">
+        <div v-show="visible" class="fox-dialog" :style="styles">
+          <div class="fox-dialog_header">
+            <slot name="title">
+              <span class="title">{{ title }}</span>
+            </slot>
+            <button @click="onCancel" class="closebtn">
+              <i class="fox-icon-close"></i>
+            </button>
+          </div>
+          <div class="fox-dialog_body">
+            <slot></slot>
+          </div>
+          <div class="fox-dialog_footer" v-if="$slots.footer || showFooter">
+            <slot name="footer"></slot>
+            <div v-if="!$slots.footer && showFooter">
+              <fox-button @click="onCancel">{{ cancelText }}</fox-button>
+              <fox-button @click="onOk" type="primary">{{ okText }}</fox-button>
+            </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
   </transition>
 </template>
@@ -36,7 +38,7 @@ export default {
       type: String,
       default: '提示'
     },
-    style: {
+    styles: {
       type: String,
       default: ''
     },
@@ -137,7 +139,7 @@ $danger: rgb(248, 87, 87);
         overflow: hidden;
         cursor: pointer;
         &:hover {
-          transform: scale(1.05) translate(-5%, -5%);
+          transform: scale(1.02) translate(-2%, -2%);
         }
       }
     }
@@ -155,11 +157,18 @@ $danger: rgb(248, 87, 87);
 }
 
 .fox-dialog-enter-active {
-  animation: fade 0.5s;
+  animation: fade 0.3s;
 }
 .fox-dialog-leave-active {
-  animation: fade 0.5s reverse;
+  animation: fade 0.3s reverse;
 }
+.fox-dialog-inner-enter-active {
+  animation: fade-inner 0.5s;
+}
+.fox-dialog-inner-leave-active {
+  animation: fade-inner 0.5s reverse;
+}
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -168,6 +177,16 @@ $danger: rgb(248, 87, 87);
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes fade-inner {
+  from {
+    visibility: hidden;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    visibility: show;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 </style>
