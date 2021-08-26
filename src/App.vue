@@ -1,10 +1,16 @@
 <template>
   <div id="app">
+    <div>
+      <fox-input placeholder="请输入姓名" v-model="username"></fox-input>
+      <fox-input placeholder="请输入年龄" type="number"></fox-input>
+      <fox-input placeholder="已禁止输入" disabled></fox-input>
+    </div>
+    <hr />
     <fox-button @click="setDialogShow(true)">弹窗</fox-button>
     <div>
       <fox-dialog
         :visible="visible"
-        style="top:50%,max-width:300px"
+        styles="top:50%,max-width:300px"
         title="温馨提示"
         @onOk="handleOk"
         @onCancel="handleCancel"
@@ -55,7 +61,8 @@ export default {
   name: 'App',
   data() {
     return {
-      visible: true
+      visible: false,
+      username: ''
     }
   },
   methods: {
@@ -70,6 +77,11 @@ export default {
     },
     handleCancel() {
       this.setDialogShow(false)
+    }
+  },
+  watch: {
+    username(newVal) {
+      console.log('username:', newVal)
     }
   }
 }
