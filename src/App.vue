@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <div>
-      <fox-input placeholder="请输入姓名" v-model="username"></fox-input>
-      <fox-input placeholder="请输入年龄" type="number"></fox-input>
-      <fox-input placeholder="已禁止输入" disabled></fox-input>
+      <h2>输入框</h2>
+      <fox-input placeholder="请输入姓名" v-model="username" clearable />
+      <fox-input placeholder="请输入密码" type="password" showPassword />
+      <fox-input placeholder="请输入年龄" type="number" />
+      <fox-input placeholder="已禁止输入" disabled />
     </div>
     <hr />
+    <h2>弹窗</h2>
     <fox-button @click="setDialogShow(true)">弹窗</fox-button>
     <div>
       <fox-dialog
@@ -23,6 +26,7 @@
       </fox-dialog>
     </div>
     <hr />
+    <h2>按钮</h2>
     <div>
       <fox-button @click="handleClick">我是按钮</fox-button>
       <fox-button type="primary">我是按钮</fox-button>
@@ -87,5 +91,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

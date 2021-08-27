@@ -157,10 +157,10 @@ $danger: rgb(248, 87, 87);
 }
 
 .fox-dialog-enter-active {
-  animation: fade 0.3s;
+  animation: fade 0.5s;
 }
 .fox-dialog-leave-active {
-  animation: fade 0.3s reverse;
+  animation: fade 0.5s reverse;
 }
 .fox-dialog-inner-enter-active {
   animation: fade-inner 0.5s;
@@ -172,7 +172,7 @@ $danger: rgb(248, 87, 87);
 @keyframes fade {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -181,11 +181,11 @@ $danger: rgb(248, 87, 87);
 }
 @keyframes fade-inner {
   from {
-    visibility: hidden;
+    opacity: 0;
     transform: translate(-50%, -50%) scale(0);
   }
   to {
-    visibility: show;
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
 }
