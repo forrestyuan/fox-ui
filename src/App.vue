@@ -1,6 +1,29 @@
 <template>
   <div id="app">
     <div>
+      <h2>单选框</h2>
+      <div>
+        <fox-radio v-model="gender" name="gender" label="1">男</fox-radio>
+        <fox-radio v-model="gender" name="gender" label="2">女</fox-radio>
+      </div>
+      <fox-radio-group v-model="gender">
+        <fox-radio name="gender" label="1">男</fox-radio>
+        <fox-radio name="gender" label="2">女</fox-radio>
+        <fox-radio name="gender" label="3">未知</fox-radio>
+      </fox-radio-group>
+    </div>
+    <hr />
+    <div>
+      <h2>Switch 开关</h2>
+      <fox-switch v-model="isSwitchAcitve" name="isActive"></fox-switch>
+      <fox-switch
+        v-model="isSwitchAcitve"
+        active-color="red"
+        in-active-color="black"
+      ></fox-switch>
+    </div>
+    <hr />
+    <div>
       <h2>输入框</h2>
       <fox-input placeholder="请输入姓名" v-model="username" clearable />
       <fox-input placeholder="请输入密码" type="password" showPassword />
@@ -66,7 +89,9 @@ export default {
   data() {
     return {
       visible: false,
-      username: ''
+      username: '',
+      isSwitchAcitve: false,
+      gender: ''
     }
   },
   methods: {
@@ -86,6 +111,12 @@ export default {
   watch: {
     username(newVal) {
       console.log('username:', newVal)
+    },
+    isSwitchAcitve(newVal) {
+      console.log('switch val', newVal)
+    },
+    gender(newVal) {
+      console.log('gender val', newVal)
     }
   }
 }

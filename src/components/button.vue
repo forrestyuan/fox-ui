@@ -52,12 +52,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$white: #fff;
-$default: #555;
-$primary: rgb(22, 123, 255);
-$warning: rgb(197, 189, 69);
-$danger: rgb(248, 87, 87);
-
+@import '../scss/common.scss';
 @mixin color-set($color: #ccc) {
   background-color: $color;
   border-color: $color;
@@ -80,14 +75,7 @@ $danger: rgb(248, 87, 87);
     color: $color;
   }
 }
-@mixin disbale-set() {
-  border: solid 1px $default;
-  filter: alpha(opacity=30);
-  opacity: 0.3;
-  &:hover {
-    cursor: not-allowed;
-  }
-}
+
 .fox-button {
   color: $white;
   display: flex;

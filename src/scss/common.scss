@@ -1,0 +1,14 @@
+$white: #fff;
+$dark-white: #dcdfe6;
+$default: #555;
+$primary: rgb(22, 123, 255);
+$warning: rgb(197, 189, 69);
+$danger: rgb(248, 87, 87);
+@mixin disbale-set() {
+  border: solid 1px $default;
+  filter: alpha(opacity=30);
+  opacity: 0.3;
+  &:hover {
+    cursor: not-allowed;
+  }
+}

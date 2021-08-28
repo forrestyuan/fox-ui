@@ -80,11 +80,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$white: #fff;
-$default: #555;
-$primary: rgb(22, 123, 255);
-$warning: rgb(197, 189, 69);
-$danger: rgb(248, 87, 87);
+@import '../scss/common.scss';
 .fox-dialog_wrapper {
   position: fixed;
   width: 100vw;
