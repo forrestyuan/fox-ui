@@ -80,7 +80,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/common.scss';
+@import './scss/common.scss';
 .fox-dialog_wrapper {
   position: fixed;
   width: 100vw;
