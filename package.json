@@ -1,7 +1,11 @@
 {
   "name": "fox-ui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "./dist/fox-ui.umd.min.js",
+  "author": {
+    "name": "foxyuan"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
