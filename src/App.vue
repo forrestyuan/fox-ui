@@ -1,6 +1,39 @@
 <template>
   <div id="app">
     <div>
+      <h2>form表单</h2>
+      <fox-form :model="formData" @onSubmit="submitData" labelWidth="80px">
+        <fox-form-item label="邮箱">
+          <fox-input
+            type="email"
+            v-model="formData.username"
+            placeholder="请输入邮箱"
+          />
+        </fox-form-item>
+        <fox-form-item label="选择">
+          <fox-switch v-model="formData.choice" />
+        </fox-form-item>
+        <fox-form-item>
+          <fox-button type="primary" native-type="submit" plain>
+            提交
+          </fox-button>
+        </fox-form-item>
+      </fox-form>
+    </div>
+    <hr />
+    <div>
+      <h2>复选框</h2>
+      <div>
+        <fox-checkbox v-model="favor">跑步</fox-checkbox>
+        <fox-checkbox-group v-model="hobby">
+          <fox-checkbox label="王者">王者</fox-checkbox>
+          <fox-checkbox label="写代码">写代码</fox-checkbox>
+          <fox-checkbox label="篮球">篮球</fox-checkbox>
+        </fox-checkbox-group>
+      </div>
+    </div>
+    <hr />
+    <div>
       <h2>单选框</h2>
       <div>
         <fox-radio v-model="gender" name="gender" label="1">男</fox-radio>
@@ -91,7 +124,13 @@ export default {
       visible: false,
       username: '',
       isSwitchAcitve: false,
-      gender: ''
+      gender: '',
+      favor: false,
+      hobby: [],
+      formData: {
+        username: '',
+        choice: false
+      }
     }
   },
   methods: {
@@ -106,6 +145,9 @@ export default {
     },
     handleCancel() {
       this.setDialogShow(false)
+    },
+    submitData() {
+      console.log('提交的表单数据是：', this.formData)
     }
   },
   watch: {

@@ -2,6 +2,7 @@
   <button
     @click="handleClick"
     :disabled="disabled"
+    :type="nativeType"
     :class="['fox-button', type, { plain, round, circle }]"
   >
     <i v-if="icon" :class="[`fox-icon-${icon}`]"></i>
@@ -37,14 +38,26 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    nativeType: {
+      type: String,
+      default: 'button'
     }
+  },
+  inject: {
+    Form: { default: null }
   },
   data() {
     return {}
   },
   methods: {
     handleClick(e) {
-      this.$emit('click', e)
+      console.log(this.Form)
+      if (!!this.Form && this.nativeType === 'submit') {
+        this.Form.$emit('onSubmit', e)
+      } else {
+        this.$emit('click', e)
+      }
     }
   },
   mounted() {},
