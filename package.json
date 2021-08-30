@@ -2,7 +2,7 @@
   "name": "fox-vui",
   "version": "0.1.0",
   "private": false,
-  "main": "./dist/fox-ui.umd.min.js",
+  "main": "./dist/fox-vui.umd.min.js",
   "author": {
     "name": "foxyuan"
   },
