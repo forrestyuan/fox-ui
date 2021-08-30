@@ -106,7 +106,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/common.scss';
+@import './scss/common.scss';
 .fox-input {
   width: 100%;
   position: relative;

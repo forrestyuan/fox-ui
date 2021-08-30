@@ -1,20 +1,8 @@
 <template>
-  <label
-    role="checkbox"
-    :class="[
-      'fox-checkbox',
-      { 'is-checked': isGroup ? model.includes(label) : model }
-    ]"
-  >
-    <input
-      type="checkbox"
-      class="fox-checkbox_input"
-      v-model="model"
-      :name="name"
-      :value="label"
-    />
-    <span class="fox-checkbox_core" ref="core"></span>
-    <span class="fox-checkbox_label">
+  <label role="radio" :class="['fox-radio', { 'is-checked': model === label }]">
+    <input type="radio" class="fox-radio_input" v-model="model" :name="name" />
+    <span class="fox-radio_core" ref="core"></span>
+    <span class="fox-radio_label">
       <slot />
       <template v-if="!$slots.default">
         {{ label }}
@@ -24,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'foxCheckbox',
+  name: 'foxRadio',
   props: {
     label: {
       type: [String, Boolean, Number],
@@ -45,29 +33,33 @@ export default {
     }
   },
   inject: {
-    CheckboxGroup: {
+    RadioGroup: {
       default: ''
     }
   },
   computed: {
-    isGroup() {
-      return !!this.CheckboxGroup
-    },
     model: {
       get() {
-        return this.isGroup ? this.CheckboxGroup.value : this.value
+        if (!!this.RadioGroup) {
+          return this.RadioGroup.value
+        } else {
+          return this.value
+        }
       },
-      set(checked) {
-        this.isGroup
-          ? this.CheckboxGroup.$emit('input', checked)
-          : this.$emit('input', checked)
+      set() {
+        if (!!this.RadioGroup) {
+          this.RadioGroup.$emit('input', this.label)
+        } else {
+          this.$emit('input', this.label)
+        }
       }
     }
   },
   methods: {
     setCoreColor() {
       if (this.activeColor || this.inActiveColor) {
-        const color = this.model ? this.activeColor : this.inActiveColor
+        const color =
+          this.model === this.label ? this.activeColor : this.inActiveColor
         this.$refs.core.style.borderColor = color
         this.$refs.core.style.backgroundColor = color
       }
@@ -82,8 +74,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/common.scss';
-.fox-checkbox {
+@import './scss/common.scss';
+.fox-radio {
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -99,41 +91,28 @@ export default {
     height: inherit;
     border: solid 1px $dark-white;
     outline: none;
-    background-color: $white;
+    border-radius: 100%;
+    background-color: $dark-white;
     transition: border-color 0.3s, background-color 0.3s;
     vertical-align: middle;
-    &::before {
-      content: '';
-      position: absolute;
-      top: 11px;
-      left: 3px;
-      // width: 6px;
-      height: 2px;
-      background-color: $white;
-      transform: rotate(45deg);
-    }
     &::after {
       content: '';
       position: absolute;
-      top: 9px;
-      left: 6px;
-      // width: 12px;
-      height: 2px;
+      top: 0px;
+      left: 0px;
+      border-radius: 100%;
+      transition: all 0.3s;
+      width: 100%;
+      height: 100%;
       background-color: $white;
-      transform: rotate(-45deg) scale(1.1);
     }
   }
   &.is-checked {
-    & .fox-checkbox_core {
+    & .fox-radio_core {
       border-color: $primary;
       background-color: $primary;
       &::after {
-        animation: tickAfter 0.2s 0.2s linear;
-        animation-fill-mode: forwards;
-      }
-      &::before {
-        animation: tickBefore 0.2s linear;
-        animation-fill-mode: forwards;
+        transform: scale(0.3);
       }
     }
   }
@@ -146,24 +125,6 @@ export default {
     margin-left: 2px;
     font-size: 14px;
     vertical-align: middle;
-  }
-}
-@keyframes tickBefore {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 6px;
-  }
-}
-@keyframes tickAfter {
-  from {
-    width: 0px;
-    top: 13px;
-  }
-  to {
-    width: 12px;
-    top: 9px;
   }
 }
 </style>

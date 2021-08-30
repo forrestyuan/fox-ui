@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../scss/common.scss';
+@import './scss/common.scss';
 .fox-switch {
   display: inline-flex;
   align-items: center;

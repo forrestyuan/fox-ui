@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/common.scss';
+@import './scss/common.scss';
 .fox-form-item {
   margin-bottom: 25px;
   display: flex;
