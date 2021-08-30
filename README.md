@@ -7,7 +7,7 @@ A Vue.js 2.0 UI Tookit for web
 ## 使用
 
 1. 安装依赖
- `yarn add fox-ui`
+ `yarn add fox-vui`
 
 2. 注册组件
 

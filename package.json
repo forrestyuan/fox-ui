@@ -1,6 +1,6 @@
 {
   "name": "fox-vui",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "main": "./dist/fox-vui.umd.min.js",
   "author": {
@@ -12,6 +12,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
     "lib": "vue-cli-service build --target lib packages/index.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forrestyuan/fox-ui.git"
   },
   "dependencies": {
     "core-js": "^3.6.5",
