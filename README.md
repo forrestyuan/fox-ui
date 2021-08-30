@@ -12,7 +12,7 @@ A Vue.js 2.0 UI Tookit for web
 2. 注册组件
 
 ```
-import FoxUI form 'fox-ui'
+import FoxUI form 'fox-vui'
 import 'fox-ui/dist/fox-ui.css'
 
 Vue.use(FoxUI)
